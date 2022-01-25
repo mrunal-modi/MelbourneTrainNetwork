@@ -1,0 +1,119 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link href="./styles.css" rel="stylesheet">
+    <title>Melbourne Train Tracker</title>
+    <!-- Get URLs to linkedin, Gmail, Twitter from Json -->
+    <script src="./contacts_data.js"></script>
+    <!-- Import Mapbox Library -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- main : Start -->
+    <div class="main">
+        <!-- header: Start -->
+        <header>
+            <!-- Bootstrap NavBar Start -->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                
+                <a class="navbar-brand" href="https://mrunal-modi.github.io/">
+                <img src="./assets/logo.png" class="logo" alt="logo"/>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <!-- <li class="nav-item">
+                    <a class="nav-link" href="#">Exercises</a>
+                    </li> -->
+                    <li class="nav-item">
+                      <a class="nav-link" href="https://mrunal-modi.github.io/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="https://mrunal-modi.github.io/about-me.html">Me</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="https://mrunal-modi.github.io/projects.html" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Projects
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="https://mrunal-modi.github.io/Eyes/">Eyes</a></li>
+                        <li><a class="dropdown-item" href="https://mrunal-modi.github.io/PacMen/">PacMen</a></li>
+                        <li><a class="dropdown-item" href="https://mrunal-modi.github.io/RealTimeBus/">RealTimeBus</a></li>
+                    </ul>
+                    </li>
+                </ul>
+
+                <li class="nav-item" id="github_url">
+                  <!-- <a href="https://github.com/mrunal-modi"> <i class="bi bi-github"></i></a> -->
+                  <!-- Section populated by JS : Start -->
+                  <script src="./render_contacts_github.js"></script>
+                </li>
+  
+                <li class="nav-item" id="twitter_url">
+                  <!-- <a href="https://twitter.com/mrunalmodi"> <i class="bi bi-twitter"></i></a> -->
+                  <!-- Section populated by JS : Start -->
+                  <script src="./render_contacts_twitter.js"></script>
+                </li>
+  
+                <li class="nav-item" id="linkedIn_url">
+                  <!-- <a href="https://www.linkedin.com/in/mrunalmodi/"> <i class="bi bi-linkedin"></i></a> -->
+                  <!-- Section populated by JS : Start -->
+                  <script src="./render_contacts_linkedIn.js"></script>
+                </li>
+  
+                <li class="nav-item" id="email_id">
+                  <!-- <a href="https://www.linkedin.com/in/mrunalmodi/"> <i class="bi bi-envelope"></i></a> -->
+                  <!-- Section populated by JS : Start -->
+                  <script src="./render_contacts_email.js"></script>
+                </li>
+
+                </div>
+
+            </div>
+            </nav>
+        </header>
+
+        <!-- Display Map & Button -->
+        <div class="content">
+          <button onclick='move()' type="button" class="btn btn-success">Show Alamein Train Line Stops</button>
+          <div id="map"></div>
+        </div>
+        
+        <!-- Add Js  -->
+        <script src="./mapanimation.js"></script>
+        <script src="./fetch_ptv_data.js"></script>
+
+      <!-- footer: Start -->
+      <footer class="footer mt-auto py-3 bg-light">
+        <div class="container">
+          <span class="text-muted">Are We In? &copy; 2022</span>
+        </div>
+      </footer>
+
+    </div>
+
+ 
+  </body>
+</html>
