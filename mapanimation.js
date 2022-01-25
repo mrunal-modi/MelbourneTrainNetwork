@@ -28,7 +28,7 @@ const busStops = [
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
     center: [145.079666, -37.8683167],
-    zoom: 10,
+    zoom: 9,
   });
   
   // TODO: add a marker to the map at the first coordinates in the array busStops. The marker variable should be named "marker"
