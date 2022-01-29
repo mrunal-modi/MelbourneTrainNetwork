@@ -45,7 +45,7 @@ const v3_stops_train_alamein_to_city_url = 'http://timetableapi.ptv.vic.gov.au/v
 // /v3/stops/route/958/route_type/1?direction_id=15
 // const v3_stops_tram_city_to_vermont_url = 'http://timetableapi.ptv.vic.gov.au/v3/stops/route/958/route_type/1?direction_id=15&devid=3002044&signature=0CF883865842078EAE9AFEC0F2816BE80047B651';
 // /v3/stops/route/958/route_type/1?direction_id=29
-const v3_stops_train_vermont_to_city_url = 'http://timetableapi.ptv.vic.gov.au/v3/stops/route/958/route_type/1?direction_id=29&devid=3002044&signature=16199E8FE64532D3081079A338BAC2169022D25E';
+const v3_stops_tram_vermont_to_city_url = 'http://timetableapi.ptv.vic.gov.au/v3/stops/route/958/route_type/1?direction_id=29&devid=3002044&signature=16199E8FE64532D3081079A338BAC2169022D25E';
 
 
 
@@ -75,17 +75,19 @@ function sortObj(obj) {
 
 // So to get the result back you can wrap this in an IIFE (Immediately Invoked Function Expression) like this:
 (async () => {
-  trainData = await mainFunction(v3_stops_train_alamein_to_city_url);
-  tramData = await mainFunction(v3_stops_train_vermont_to_city_url);
-  trainStops = sortObj(trainData.stops);
-  tramStops = sortObj(tramData.stops);
-  console.log(trainStops);
-  console.log(tramStops);
-  // const v3_routes_data = routesData.routes;
-  // const len = v3_routes_data.length;
-  // let train_stops = [];
-  // for (let i = 0; i < len; i++) {
+  const trainData = await mainFunction(v3_stops_train_alamein_to_city_url);
+  // const tramData = await mainFunction(v3_stops_tram_vermont_to_city_url);
+  trainStops = trainData.stops;
+  // tramStops = tramData.stops;
 
-  // }
-  // console.log(train_stops);
+  train_stopNames_sorted = [];
+  train_LngLat_sorted = [];
+
+  for (let i = 0; i < trainStops.length; i++) {
+    trainStops.sort((x, y) => x.stop_sequence - y.stop_sequence);
+    train_stopNames_sorted.push(trainStops[i]['stop_name']);
+    train_LngLat_sorted.push([trainStops[i]['stop_longitude'], trainStops[i]['stop_latitude']]);
+  }
+  console.log(train_stopNames_sorted);
+  console.log(train_LngLat_sorted);
 })()
