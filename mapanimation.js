@@ -49,7 +49,6 @@ function sortObj(obj) {
   console.log(train_LngLat_sorted);
 })()
 
-
   // This array contains the coordinates (Lng / Lat) for all stops
 // const stops = [
 //   [145.079666, -37.8683167],
@@ -71,6 +70,29 @@ function sortObj(obj) {
 //   [144.95253, -37.8183327],
 //   [145.0703, -37.8357124],
 // ];
+
+// Below LongLat co-ordinates derived and stored in "train_LngLat_sorted" but that only works with Desktop with Signature
+const stops = [
+[145.079666, -37.8683167],
+[145.081345, -37.86197],
+[145.0805, -37.8515625],
+[145.075562, -37.8439827],
+[145.0703, -37.8357124],
+[145.069641, -37.8315],
+[145.058685, -37.8265648],
+[145.045837, -37.8224],
+[145.036438, -37.8214645],
+[145.0229, -37.8218231],
+[145.007553, -37.8275566],
+[144.99707, -37.8264046],
+[144.990158, -37.8240738],
+[144.9729, -37.8110542],
+[144.9626, -37.8099365],
+[144.955658, -37.8119774],
+[144.95253, -37.8183327],
+[144.966965, -37.81831],
+];
+
 
 
 
@@ -95,8 +117,8 @@ function sortObj(obj) {
     // Use counter to access bus stops in the array stops
     // Make sure you call move() after you increment the counter.
     setTimeout(() => {
-        if (counter >= train_LngLat_sorted.length) return;
-        marker.setLngLat(train_LngLat_sorted[counter]);
+        if (counter >= stops.length) return;
+        marker.setLngLat(stops[counter]);
         counter++;
         move();
       }, 1000);

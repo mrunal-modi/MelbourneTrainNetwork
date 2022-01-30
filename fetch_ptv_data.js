@@ -30,8 +30,20 @@
 // const v3_direction_train_alamein_url = 'http://timetableapi.ptv.vic.gov.au/v3/directions/route/1?devid=3002044&signature=42AAB0DC20393C9B483ADC815507CE2A1F605187';
 // const v3_direction_tram_75_url = 'http://timetableapi.ptv.vic.gov.au/v3/directions/route/958?devid=3002044&signature=0F02314853861F7C18D7610C8FCEAB4FB81789B7';
 
-// Alamein Train = "direction_id": 0, "direction_name": "Alamein" | "direction_id": 1, "direction_name": "City (Flinders Street)",
-// 75 Tram = "direction_id": 15, "direction_name": "Central Pier Docklands" | "direction_id": 29, "direction_name": "Vermont South",
+// Alamein Train
+// "direction_id": 0
+// "direction_name": "Alamein"
+
+// "direction_id": 1
+// "direction_name": "City (Flinders Street)",
+
+
+// 75 Tram
+// "direction_id": 15
+// "direction_name": "Central Pier Docklands"
+
+// "direction_id": 29
+// "direction_name": "Vermont South",
 
 
 // View all stops on a specific route
