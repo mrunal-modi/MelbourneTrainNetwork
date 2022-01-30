@@ -1,7 +1,7 @@
 // View all stops on a specific route
 // GET /v3/stops/route/{route_id}/route_type/{route_type}?direction_id={direction_id}
 // /v3/stops/route/1/route_type/0?direction_id=1
-const v3_stops_train_alamein_to_city_url = 'http://timetableapi.ptv.vic.gov.au/v3/stops/route/1/route_type/0?direction_id=1&devid=3002044&signature=6CF88A4FA70A46C46CF64B7AAD240ACD54C8119D';
+const v3_stops_train_alamein_to_city_url = 'https://timetableapi.ptv.vic.gov.au/v3/stops/route/1/route_type/0?direction_id=1&devid=3002044&signature=6CF88A4FA70A46C46CF64B7AAD240ACD54C8119D';
 
 const asynchronousFunction = async (url) => {
   const response = await fetch(url);            // You use the await keyword instead than a promise-based approach
