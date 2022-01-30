@@ -1,53 +1,53 @@
-// View all stops on a specific route
-// GET /v3/stops/route/{route_id}/route_type/{route_type}?direction_id={direction_id}
+// // View all stops on a specific route
+// // GET /v3/stops/route/{route_id}/route_type/{route_type}?direction_id={direction_id}
 
-// /v3/stops/route/1/route_type/0?direction_id=0
-// const v3_stops_train_city_to_alamein_url = 'http://timetableapi.ptv.vic.gov.au/v3/stops/route/1/route_type/0?direction_id=0&devid=3002044&signature=B0200AF628E1D3363C360A92B1FDBFFE9347D5D0';
-// /v3/stops/route/1/route_type/0?direction_id=1
-const v3_stops_train_alamein_to_city_url = 'http://timetableapi.ptv.vic.gov.au/v3/stops/route/1/route_type/0?direction_id=1&devid=3002044&signature=6CF88A4FA70A46C46CF64B7AAD240ACD54C8119D';
+// // /v3/stops/route/1/route_type/0?direction_id=0
+// // const v3_stops_train_city_to_alamein_url = 'http://timetableapi.ptv.vic.gov.au/v3/stops/route/1/route_type/0?direction_id=0&devid=3002044&signature=B0200AF628E1D3363C360A92B1FDBFFE9347D5D0';
+// // /v3/stops/route/1/route_type/0?direction_id=1
+// const v3_stops_train_alamein_to_city_url = 'http://timetableapi.ptv.vic.gov.au/v3/stops/route/1/route_type/0?direction_id=1&devid=3002044&signature=6CF88A4FA70A46C46CF64B7AAD240ACD54C8119D';
 
-// Problem: you are making an asynchronous call, and you need the result of that call to be returned from the original function.
-// but asynchronousFunction() performs some asynchronous call in it (for example a fetch() call), 
-// and can’t directly return the result value. Perhaps internally it has a promise it needs to wait for, or a callback.
-const asynchronousFunction = async (url) => {
-  const response = await fetch(url);            // You use the await keyword instead than a promise-based approach
-  const data = await response.json();           // Return response with type json
-  return data;
-}
+// // Problem: you are making an asynchronous call, and you need the result of that call to be returned from the original function.
+// // but asynchronousFunction() performs some asynchronous call in it (for example a fetch() call), 
+// // and can’t directly return the result value. Perhaps internally it has a promise it needs to wait for, or a callback.
+// const asynchronousFunction = async (url) => {
+//   const response = await fetch(url);            // You use the await keyword instead than a promise-based approach
+//   const data = await response.json();           // Return response with type json
+//   return data;
+// }
 
-// In this case in mainFunction we need to add async to the function signature, and await before we call asynchronousFunction()
-// Now this returns a promise, because it’s an async function
-const mainFunction = async (url) => {
-  const result = await asynchronousFunction(url);
-  return result;
-}
+// // In this case in mainFunction we need to add async to the function signature, and await before we call asynchronousFunction()
+// // Now this returns a promise, because it’s an async function
+// const mainFunction = async (url) => {
+//   const result = await asynchronousFunction(url);
+//   return result;
+// }
 
-// Sort Object
-function sortObj(obj) {
-  return Object.keys(obj).sort().reduce(function (result, key) {
-    result[key] = obj[key];
-    return result;
-  }, {});
-}
+// // Sort Object
+// function sortObj(obj) {
+//   return Object.keys(obj).sort().reduce(function (result, key) {
+//     result[key] = obj[key];
+//     return result;
+//   }, {});
+// }
 
-// So to get the result back you can wrap this in an IIFE (Immediately Invoked Function Expression) like this:
-(async () => {
-  const trainData = await mainFunction(v3_stops_train_alamein_to_city_url);
-  // const tramData = await mainFunction(v3_stops_tram_vermont_to_city_url);
-  trainStops = trainData.stops;
-  // tramStops = tramData.stops;
+// // So to get the result back you can wrap this in an IIFE (Immediately Invoked Function Expression) like this:
+// (async () => {
+//   const trainData = await mainFunction(v3_stops_train_alamein_to_city_url);
+//   // const tramData = await mainFunction(v3_stops_tram_vermont_to_city_url);
+//   trainStops = trainData.stops;
+//   // tramStops = tramData.stops;
 
-  train_stopNames_sorted = [];
-  train_LngLat_sorted = [];
+//   train_stopNames_sorted = [];
+//   train_LngLat_sorted = [];
 
-  for (let i = 0; i < trainStops.length; i++) {
-    trainStops.sort((x, y) => x.stop_sequence - y.stop_sequence);
-    train_stopNames_sorted.push(trainStops[i]['stop_name']);
-    train_LngLat_sorted.push([trainStops[i]['stop_longitude'], trainStops[i]['stop_latitude']]);
-  }
-  console.log(train_stopNames_sorted);
-  console.log(train_LngLat_sorted);
-})()
+//   for (let i = 0; i < trainStops.length; i++) {
+//     trainStops.sort((x, y) => x.stop_sequence - y.stop_sequence);
+//     train_stopNames_sorted.push(trainStops[i]['stop_name']);
+//     train_LngLat_sorted.push([trainStops[i]['stop_longitude'], trainStops[i]['stop_latitude']]);
+//   }
+//   console.log(train_stopNames_sorted);
+//   console.log(train_LngLat_sorted);
+// })()
 
   // This array contains the coordinates (Lng / Lat) for all stops
 // const stops = [
