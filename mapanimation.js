@@ -3,6 +3,7 @@
 // base URL = https://timetableapi.ptv.vic.gov.au
 // API URI = /v3/stops/route/1/route_type/0?direction_id=1
 const v3_stops_train_alamein_to_city_url = 'https://timetableapi.ptv.vic.gov.au/v3/stops/route/1/route_type/0?direction_id=1&devid=3002044&signature=6CF88A4FA70A46C46CF64B7AAD240ACD54C8119D';
+const v3_stops_train_city_to_alamein_url = 'https://timetableapi.ptv.vic.gov.au/v3/stops/route/1/route_type/0?direction_id=0&devid=3002044&signature=B0200AF628E1D3363C360A92B1FDBFFE9347D5D0';
 
 const asynchronousFunction = async (url) => {
   const response = await fetch(url);            // You use the await keyword instead than a promise-based approach
@@ -20,14 +21,23 @@ const mainFunction = async (url) => {
 // So to get the result back you can wrap this in an IIFE (Immediately Invoked Function Expression) like this:
 // This dynamic array trainStopsLngLat - contains the coordinates (Lng / Lat) for all stops
 (async () => {
-  const trainData = await mainFunction(v3_stops_train_alamein_to_city_url);
-  trainStops = trainData.stops;
-  trainStopsLngLat = [];
-  for (let i = 0; i < trainStops.length; i++) {
-    trainStops.sort((x, y) => x.stop_sequence - y.stop_sequence);
-    trainStopsLngLat.push([trainStops[i]['stop_longitude'], trainStops[i]['stop_latitude']]);
+  const alamein_to_city_trainData = await mainFunction(v3_stops_train_alamein_to_city_url);
+  alamein_to_city_trainStops = alamein_to_city_trainData.stops;
+  alamein_to_city_trainStopsLngLat = [];
+  for (let i = 0; i < alamein_to_city_trainStops.length; i++) {
+    alamein_to_city_trainStops.sort((x, y) => x.stop_sequence - y.stop_sequence);
+    alamein_to_city_trainStopsLngLat.push([alamein_to_city_trainStops[i]['stop_longitude'], alamein_to_city_trainStops[i]['stop_latitude']]);
   }
-  console.log(trainStopsLngLat);
+  console.log(alamein_to_city_trainStopsLngLat);
+
+  const city_to_alamein_trainData = await mainFunction(v3_stops_train_city_to_alamein_url);
+  city_to_alamein_trainStops = city_to_alamein_trainData.stops;
+  city_to_alamein_trainStopsLngLat = [];
+  for (let i = 0; i < alamein_to_city_trainStops.length; i++) {
+    city_to_alamein_trainStops.sort((x, y) => x.stop_sequence - y.stop_sequence);
+    city_to_alamein_trainStopsLngLat.push([city_to_alamein_trainStops[i]['stop_longitude'], city_to_alamein_trainStops[i]['stop_latitude']]);
+  }
+  console.log(city_to_alamein_trainStopsLngLat);
 })()
 
 // This static array trainStopsLngLat - contains the coordinates (Lng / Lat) for all stops
@@ -73,8 +83,20 @@ function move() {
   // Use counter to access bus stops in the array stops
   // Make sure you call move() after you increment the counter.
   setTimeout(() => {
-      if (counter >= trainStopsLngLat.length) return;
-      marker.setLngLat(trainStopsLngLat[counter]);
+      if (counter >= alamein_to_city_trainStopsLngLat.length) return;
+      marker.setLngLat(alamein_to_city_trainStopsLngLat[counter]);
+      counter++;
+      move();
+    }, 1000);
+}
+
+function moveBack() {
+  // TODO: move the marker on the map every 1000ms. Use the function marker.setLngLat() to update the marker coordinates
+  // Use counter to access bus stops in the array stops
+  // Make sure you call move() after you increment the counter.
+  setTimeout(() => {
+      if (counter >= city_to_alamein_trainStopsLngLat.length) return;
+      marker.setLngLat(city_to_alamein_trainStopsLngLat[counter]);
       counter++;
       move();
     }, 1000);
@@ -83,4 +105,8 @@ function move() {
 // Do not edit code past this point
 if (typeof module !== 'undefined') {
   module.exports = { move };
+}
+
+if (typeof module !== 'undefined') {
+  module.exports = { moveBack };
 }
